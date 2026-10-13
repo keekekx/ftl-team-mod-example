@@ -8,16 +8,15 @@ This is a standalone C# Mod example for FTL Team. It demonstrates a hero, an ene
 
 - 安装 [.NET SDK 8 或更新版本](https://dotnet.microsoft.com/download)。工程目标框架是 .NET Framework 4.7.2，所需引用程序集由 NuGet 包提供。
 - 准备一份与 Mod 对应版本的 Windows 游戏。找到游戏目录中的 `ftl_team_Data/Managed` 文件夹；其中应有 `DiceGame.Unity.dll` 和 `DiceGame.Combat.dll`。
-- 在 PowerShell 中打开本目录。
+- 在任意终端中打开本目录（Windows 命令提示符、PowerShell、macOS/Linux 终端均可）。
 
 ## 编译、打包、安装 / Build, package, install
 
-```powershell
-./build.ps1 -GameManagedDir "C:/Games/FTL Team/ftl_team_Data/Managed"
-./pack.ps1
+```text
+dotnet build StarterMod.csproj -c Release "-p:GameManagedDir=C:/Games/FTL Team/ftl_team_Data/Managed"
 ```
 
-产物在 `dist/StarterMod/`。把整个 `StarterMod` 文件夹复制到游戏的 `ftl_team_Data/Mods/` 下，然后在游戏内的 Mod 界面启用它。最终结构应为：
+将编译得到的 `bin/Release/StarterMod.dll` 与本工程的 `info.ini` 复制到游戏的 `ftl_team_Data/Mods/StarterMod/`，然后在游戏内的 Mod 界面启用它。最终结构应为：
 
 ```text
 ftl_team_Data/Mods/StarterMod/
@@ -26,7 +25,7 @@ ftl_team_Data/Mods/StarterMod/
   preview.png       # 可选；发布到 Steam 创意工坊时必需
 ```
 
-English: run the two commands above, copy `dist/StarterMod` to `ftl_team_Data/Mods/StarterMod`, then enable it in the game's Mods screen. The Steam Workshop publisher requires a `preview.png` in the Mod folder.
+English: run the `dotnet build` command above, copy `bin/Release/StarterMod.dll` and `info.ini` into `ftl_team_Data/Mods/StarterMod`, then enable it in the game's Mods screen. The Steam Workshop publisher requires a `preview.png` in that Mod folder.
 
 ## 示例内容 / What this adds
 
@@ -42,9 +41,9 @@ English: run the two commands above, copy `dist/StarterMod` to `ftl_team_Data/Mo
 ## 改成你自己的 Mod / Make it yours
 
 1. 修改 `info.ini` 中的 `id`、`displayName`、`description` 和 `version`。`id` 必须是小写、唯一且稳定的命名空间，例如 `yourname.yourmod`。
-2. 如需重命名 `StarterMod`，同时修改 `info.ini` 的 `name`、`StarterMod.csproj` 的 `AssemblyName`/`RootNamespace`、代码的命名空间、`pack.ps1` 中的输出名称，以及 DLL 文件名。游戏会查找 `<name>.dll` 和 `<name>.ModBehaviour`。
+2. 如需重命名 `StarterMod`，同时修改 `info.ini` 的 `name`、`StarterMod.csproj` 的 `AssemblyName`/`RootNamespace`、代码的命名空间，以及最终 DLL 文件名。游戏会查找 `<name>.dll` 和 `<name>.ModBehaviour`。
 3. 修改内容后重新编译并打包。已经公开发布的内容 ID 不要随意改名：存档会引用它们。
-4. 发布到 Steam 创意工坊前，在工程根目录加入自己的 `preview.png`，再运行 `pack.ps1`，最后在游戏的 Mod 界面上传。
+4. 发布到 Steam 创意工坊前，在安装后的 Mod 文件夹加入自己的 `preview.png`，最后在游戏的 Mod 界面上传。
 
 More API details are available in the game's `ModSdk/README.md`. If you publish this directory as a separate GitHub repository, copy that guide alongside it or link to its public location.
 
