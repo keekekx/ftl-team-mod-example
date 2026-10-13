@@ -1,4 +1,4 @@
-using DiceGame.Combat;
+using FTLGame.Combat;
 using GameMod;
 using Gameplay.Effects;
 

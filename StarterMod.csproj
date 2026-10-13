@@ -11,16 +11,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
-    <Reference Include="DiceGame.Unity" HintPath="$(GameManagedDir)/DiceGame.Unity.dll" Private="false" />
-    <Reference Include="DiceGame.Combat" HintPath="$(GameManagedDir)/DiceGame.Combat.dll" Private="false" />
+    <Reference Include="FTLGame.Unity" HintPath="$(GameManagedDir)/FTLGame.Unity.dll" Private="false" />
+    <Reference Include="FTLGame.Combat" HintPath="$(GameManagedDir)/FTLGame.Combat.dll" Private="false" />
     <Reference Include="UnityEngine.CoreModule" HintPath="$(GameManagedDir)/UnityEngine.CoreModule.dll" Private="false" />
     <Reference Include="UnityEngine.AssetBundleModule" HintPath="$(GameManagedDir)/UnityEngine.AssetBundleModule.dll" Private="false" />
   </ItemGroup>
 
   <Target Name="ValidateGameManagedDir" BeforeTargets="ResolveAssemblyReferences">
     <Error Condition="'$(GameManagedDir)' == ''" Text="Pass -p:GameManagedDir=&lt;game Data/Managed directory&gt;." />
-    <Error Condition="!Exists('$(GameManagedDir)/DiceGame.Unity.dll')" Text="DiceGame.Unity.dll was not found in $(GameManagedDir)." />
-    <Error Condition="!Exists('$(GameManagedDir)/DiceGame.Combat.dll')" Text="DiceGame.Combat.dll was not found in $(GameManagedDir)." />
+    <Error Condition="!Exists('$(GameManagedDir)/FTLGame.Unity.dll')" Text="FTLGame.Unity.dll was not found in $(GameManagedDir)." />
+    <Error Condition="!Exists('$(GameManagedDir)/FTLGame.Combat.dll')" Text="FTLGame.Combat.dll was not found in $(GameManagedDir)." />
     <Error Condition="!Exists('$(GameManagedDir)/UnityEngine.CoreModule.dll')" Text="UnityEngine.CoreModule.dll was not found in $(GameManagedDir)." />
     <Error Condition="!Exists('$(GameManagedDir)/UnityEngine.AssetBundleModule.dll')" Text="UnityEngine.AssetBundleModule.dll was not found in $(GameManagedDir)." />
   </Target>
